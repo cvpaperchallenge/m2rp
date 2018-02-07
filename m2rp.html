@@ -128,7 +128,7 @@ $(function(){
 					var selems=elems.slice(i,ei)
 					//中身のhxタグを全部hx-1にする
 					//imgの![koko](url)のkokoをaltにする＠力技
-					//imgの![koko](url)のurlを`#{figpath}url`にする＠力技
+					//imgの![koko](url)のurlを`${figpath}url`にする＠力技
 					for(var ti=0;ti<selems.length;++ti){
 						if(selems[ti].tag[0]=="h"){
 							selems[ti].tag="h"+String(Number(selems[ti].tag.substr(1))-1);
@@ -139,7 +139,7 @@ $(function(){
 									if(selems[ti].children[tti].attrs[ttti][0]==="alt")
 										selems[ti].children[tti].attrs[ttti][1]=selems[ti].children[tti].content;
 									else if(selems[ti].children[tti].attrs[ttti][0]==="src")
-										selems[ti].children[tti].attrs[ttti][1]="`#{figpath}"+selems[ti].children[tti].attrs[ttti][1]+"`"
+										selems[ti].children[tti].attrs[ttti][1]="`${figpath}"+selems[ti].children[tti].attrs[ttti][1]+"`"
 								}
 							}
 						}
