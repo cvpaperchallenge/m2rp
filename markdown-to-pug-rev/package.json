@@ -1,0 +1,14 @@
+{
+  "name": "markdown-to-pug-rev",
+  "version": "1.0.0",
+  "description": "customized markdown-to-pug",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryota Suzuki",
+  "license": "MIT",
+  "devDependencies": {
+    "markdown-it": "^8.4.0"
+  }
+}
