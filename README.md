@@ -1,38 +1,40 @@
 # markdown-to-revealjs-pug (m2rp)
 
-This application is for [cvpaper.challenge](https://github.com/cvpaperchallenge/cvpaper.challenge).
+This is client-side web-browser based slide editor by Markdown for [cvpaper.challenge](https://github.com/cvpaperchallenge/cvpaper.challenge).
 
-This is client-side web-browser based slide editor by Markdown for cvpaper.challenge.
+Markdownで書くと．cvpaper.challenge用のpugのコードを吐いてくれるブラウザ上のエディタです．オフラインで動きます．
+
+## セットアップ
+Node.jsが必要です．インストールしておいてください．
+
+markdown-it，jQueryが必要です．m2rpのホームディレクトリにて，下記のコマンドによりローカルインストールしてください．
+
+> npm install --save markdown-it jquery
 
 
-## �Z�b�g�A�b�v
-Node.js���K�v�ł��D�C���X�g�[�����Ă����Ă��������D
-markdown-it���K�v�ł��Dm2rp�̃z�[���f�B���N�g���ɂāC���L�̃R�}���h�ɂ�胍�[�J���C���X�g�[�����Ă��������D
-npm install --save markdown-it
-���̂Ƃ���l�b�g�����Ȃ��Ɠ����܂���D�ˑ���JavaScript���_�E�����[�h���Ă��邹���ł��D���݂܂���D
+## 使い方
+1. m2rp.htmlをブラウザで開きます．
+2. 上部のテキスト領域にMarkdownで書いていきます．
+3. 上部テキスト領域にファイルをドラッグ＆ドロップすると，元のカーソル位置に画像タグを自動挿入してくれます．
+4. Linktagボタンを押すと，カーソル位置にリンクタグテンプレートを自動挿入してくれます．
+5. 書き終えたらConvertボタンを押します．
+6. 下部テキスト領域の変換結果を，**git pull origin masterしてから**，index.pugの先頭にコピペしましょう．
 
-## �g����
-1. m2rp.html���u���E�U�ŊJ���܂��D
-2. �㕔�̃e�L�X�g�̈��Markdown�ŏ����Ă����܂��D
-3. �㕔�e�L�X�g�̈�Ƀt�@�C�����h���b�O���h���b�v����ƁC���̃J�[�\���ʒu�ɉ摜�^�O�������}�����Ă���܂��D
-4. Linktag�{�^���������ƁC�J�[�\���ʒu�Ƀ����N�^�O�e���v���[�g�������}�����Ă���܂��D
-5. �����I������Convert�{�^���������܂��D
-6. �����e�L�X�g�̈�̕ϊ����ʂ��C**git pull origin master���Ă���**�Cindex.pug�̐擪�ɃR�s�y���܂��傤�D
+## 書式
+基本的にMarkdownです．  
+テキスト中は装飾（強調，斜体，取り消し線），リンク，画像が使えます．  
+改行（末尾のダブルスペース）は未対応です．ごめんなさい．改段落（ダブル改行）をおすすめします．
 
-## ����
-��{�I��Markdown�ł��D
-�e�L�X�g���͑����i�����C�ΆC���������j�C�����N�C�摜���g���܂��D
-���s�i�����̃_�u���X�y�[�X�j�͖��Ή��ł��D���߂�Ȃ����D���i���i�_�u�����s�j���������߂��܂��D
+headerまわりには装飾など使わないでください．テキストオンリーで．  
+予約語なので，headerの見出し名は変えない方がいいと思います．itemXも名前を変えない方がいいと思います．  
+あとはお好きにできると思います．
 
-header�܂��ɂ͑����Ȃǎg��Ȃ��ł��������D�e�L�X�g�I�����[�ŁD
-�\���Ȃ̂ŁCheader�̌��o�����͕ς��Ȃ����������Ǝv���܂��DitemX�����O��ς��Ȃ����������Ǝv���܂��D
-���Ƃ͂��D���ɂł���Ǝv���܂��D
+## 動作環境
+クロスプラットフォームだと思います．  
+Windows 10 + Chrome 64 で確認．  
+Mac + Safari でもいけそう．  
 
-## �����
-�N���X�v���b�g�t�H�[�����Ǝv���܂��D
-Windows 10 + Chrome 64 �Ŋm�F�D
-Mac + Safari �ł����������D
-
-## ���C�Z���X�Ƃ�
+## ライセンスとか
 MIT
-�ꕔ�Cmarkdown-to-pug���t�H�[�N���Ė��������Ă��܂��ihttps://alexandremasy.github.io/markdown-to-pug/�j�D
+
+一部，[markdown-to-pug](https://alexandremasy.github.io/markdown-to-pug/)をフォークして魔改造しています．
