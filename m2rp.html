@@ -71,6 +71,15 @@ $(function(){
 	
 	//クリック時イベント
 	$('#btn_apply').click(function(){
+		//タイムスタンプとりたい
+		var d = new Date();
+		var year  = d.getFullYear();
+		var month = d.getMonth() + 1;
+		var day   = d.getDate();
+		var hour  = ( d.getHours()   < 10 ) ? '0' + d.getHours()   : d.getHours();
+		var min   = ( d.getMinutes() < 10 ) ? '0' + d.getMinutes() : d.getMinutes();
+		var sec   = ( d.getSeconds() < 10 ) ? '0' + d.getSeconds() : d.getSeconds();
+	
 		//テキストボックスの中身を拾う
 		var src = $('#tsrc').val();
 		
@@ -92,21 +101,52 @@ $(function(){
 					//セクション内を全部読む
 					for(;i<ei;++i){
 						if(elems[i].tag==="h2"){
-							var ctag="";
-							//見出しのコンテンツはクラス名に流用
-							ctag=indent(level)+"."+elems[i+1].content;
-							//search next open p
-							for(i+=3;i<ei && !(elems[i].type==="paragraph_open" || elems[i].type==="heading_open") ;++i);
-							if(i<ei && elems[i].type==="paragraph_open"){
-								//dst+=elems[i+1].content;
-								dst+=ctag+" "+elems[i+1].content+"\n";
-								//search close p
-								for(;i<ei && elems[i].type!=="paragraph_close";++i);
+							if(elems[i+1].content==="info"){
+								dst+=indent(level)+"."+elems[i+1].content+"\n";
+								++level;
+								var infoei=i+1;
+								for(;infoei<ei-1 && !(elems[infoei].tag==="h2" && elems[infoei].type==="heading_open");++infoei);
+								for(;i<infoei-1;++i){
+									if(elems[i].tag==="h3"){
+										var ctag="";
+										//見出しのコンテンツはクラス名に流用
+										ctag=indent(level)+"."+elems[i+1].content;
+										//search next open p
+										for(i+=3;i<infoei && !(elems[i].type==="paragraph_open" || elems[i].type==="heading_open") ;++i);
+										if(i<infoei && elems[i].type==="paragraph_open"){
+											//改行はスペースにしたい
+											var tstr=elems[i+1].content;
+											tstr=tstr.replace(/\r?\n/," ");
+											dst+=ctag+" "+tstr+"\n";
+											//search close p
+											for(;i<infoei && elems[i].type!=="paragraph_close";++i);
+										}
+										else{
+											--i;
+										}
+									}
+								}
+								dst+=indent(level)+".timestamp "+year+"."+month+"."+day+" "+hour+":"+min+":"+sec+"\n";
+								dst+="\n";
+								--level;
 							}
 							else{
-								--i;
+								var ctag="";
+								//見出しのコンテンツはクラス名に流用
+								ctag=indent(level)+"."+elems[i+1].content;
+								//search next open p
+								for(i+=3;i<ei && !(elems[i].type==="paragraph_open" || elems[i].type==="heading_open") ;++i);
+								if(i<ei && elems[i].type==="paragraph_open"){
+									//dst+=elems[i+1].content;
+									dst+=ctag+" "+elems[i+1].content+"\n";
+									//search close p
+									for(;i<ei && elems[i].type!=="paragraph_close";++i);
+								}
+								else{
+									--i;
+								}
+								//dst+="\n";
 							}
-							//dst+="\n";
 						}
 					}
 					--i;
@@ -210,13 +250,14 @@ $(function(){
 # header
 ## title
 Paper title
-## authors
+## info
+### authors
 A. Uthors, B. Uthors and C. Uthors
-## conference
+### conference
 
-## paper_id
+### paper_id
 
-## slide_editor
+### slide_editor
 
 
 

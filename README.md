@@ -1,6 +1,8 @@
 # markdown-to-revealjs-pug (m2rp)
 
-This is client-side web-browser based slide editor by Markdown for [cvpaper.challenge](https://github.com/cvpaperchallenge/cvpaper.challenge).
+This application is for [cvpaper.challenge](https://github.com/cvpaperchallenge/cvpaper.challenge).
+
+This is client-side web-browser based slide editor by Markdown for cvpaper.challenge.
 
 Markdownで書くと．cvpaper.challenge用のpugのコードを吐いてくれるブラウザ上のエディタです．オフラインで動きます．
 
@@ -19,6 +21,7 @@ markdown-it，jQueryが必要です．m2rpのホームディレクトリにて�
 4. Linktagボタンを押すと，カーソル位置にリンクタグテンプレートを自動挿入してくれます．
 5. 書き終えたらConvertボタンを押します．
 6. 下部テキスト領域の変換結果を，**git pull origin masterしてから**，index.pugの先頭にコピペしましょう．
+7. 追加したら，すぐgit commit -m "こめんと"しておくとよいです．
 
 ## 書式
 基本的にMarkdownです．  
