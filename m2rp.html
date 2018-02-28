@@ -99,35 +99,36 @@ $(function(){
 					var ei=i+1;
 					for(;ei<elems.length && !(elems[ei].tag==="h1" && elems[ei].type==="heading_open");++ei);
 					//セクション内を全部読む
-					for(;i<ei;++i){
+					for(i+=3;i<ei-1;++i){
 						if(elems[i].tag==="h2"){
 							if(elems[i+1].content==="info"){
 								dst+=indent(level)+"."+elems[i+1].content+"\n";
 								++level;
 								var infoei=i+1;
-								for(;infoei<ei-1 && !(elems[infoei].tag==="h2" && elems[infoei].type==="heading_open");++infoei);
-								for(;i<infoei-1;++i){
+								for(;infoei<ei && !(elems[infoei].tag!=="h3" && elems[infoei].type==="heading_open");++infoei);
+								for(i+=3;i<infoei-1;++i){
 									if(elems[i].tag==="h3"){
 										var ctag="";
 										//見出しのコンテンツはクラス名に流用
 										ctag=indent(level)+"."+elems[i+1].content;
 										//search next open p
-										for(i+=3;i<infoei && !(elems[i].type==="paragraph_open" || elems[i].type==="heading_open") ;++i);
+										for(i+=3;i<infoei-1 && !(elems[i].type==="paragraph_open" || elems[i].type==="heading_open") ;++i);
 										if(i<infoei && elems[i].type==="paragraph_open"){
 											//改行はスペースにしたい
 											var tstr=elems[i+1].content;
 											tstr=tstr.replace(/\r?\n/," ");
 											dst+=ctag+" "+tstr+"\n";
 											//search close p
-											for(;i<infoei && elems[i].type!=="paragraph_close";++i);
+											for(;i<infoei-1 && elems[i].type!=="paragraph_close";++i);
 										}
 										else{
 											--i;
 										}
 									}
 								}
+								--i;
 								dst+=indent(level)+".timestamp "+year+"."+month+"."+day+" "+hour+":"+min+":"+sec+"\n";
-								dst+="\n";
+								//dst+="\n";
 								--level;
 							}
 							else{
@@ -135,12 +136,12 @@ $(function(){
 								//見出しのコンテンツはクラス名に流用
 								ctag=indent(level)+"."+elems[i+1].content;
 								//search next open p
-								for(i+=3;i<ei && !(elems[i].type==="paragraph_open" || elems[i].type==="heading_open") ;++i);
-								if(i<ei && elems[i].type==="paragraph_open"){
+								for(i+=3;i<ei-1 && !(elems[i].type==="paragraph_open" || elems[i].type==="heading_open") ;++i);
+								if(i<ei-1 && elems[i].type==="paragraph_open"){
 									//dst+=elems[i+1].content;
 									dst+=ctag+" "+elems[i+1].content+"\n";
 									//search close p
-									for(;i<ei && elems[i].type!=="paragraph_close";++i);
+									for(;i<ei-1 && elems[i].type!=="paragraph_close";++i);
 								}
 								else{
 									--i;
@@ -149,7 +150,7 @@ $(function(){
 							}
 						}
 					}
-					--i;
+					dst+="\n";
 				}
 				else{
 					//item
@@ -196,6 +197,7 @@ $(function(){
 					--level;
 					--level;
 				}
+				--i;
 			}
 		}
 		
@@ -257,7 +259,7 @@ A. Uthors, B. Uthors and C. Uthors
 
 ### paper_id
 
-### slide_editor
+## slide_editor
 
 
 
