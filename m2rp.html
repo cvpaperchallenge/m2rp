@@ -127,7 +127,6 @@ $(function(){
 									}
 								}
 								--i;
-								dst+=indent(level)+".timestamp "+year+"."+month+"."+day+" "+hour+":"+min+":"+sec+"\n";
 								//dst+="\n";
 								--level;
 							}
@@ -202,6 +201,7 @@ $(function(){
 		}
 		
 		dst+=indent(level)+".slide_index #{getSlideIndex()}"+"\n";
+		dst+=indent(level)+".timestamp "+year+"."+month+"."+day+" "+hour+":"+min+":"+sec+"\n";
 		
 		$('#tdst').val(dst);
 	});
