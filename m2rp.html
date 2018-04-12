@@ -88,7 +88,7 @@ $(function(){
 		
 		//render to pug for reveal.js
 		var dst="";
-		var blevel=1;
+		var blevel=0;
 		var level=0+blevel;
 		dst+=indent(level++)+"+slide"+"\n";
 		var tdst="";
@@ -132,15 +132,26 @@ $(function(){
 							}
 							else{
 								var ctag="";
+								var isTitle=false;
+								var tTitle="";
 								//見出しのコンテンツはクラス名に流用
 								ctag=indent(level)+"."+elems[i+1].content;
+								if(elems[i+1].content==="title"){
+									isTitle=true;
+								}
 								//search next open p
 								for(i+=3;i<ei-1 && !(elems[i].type==="paragraph_open" || elems[i].type==="heading_open") ;++i);
 								if(i<ei-1 && elems[i].type==="paragraph_open"){
 									//dst+=elems[i+1].content;
 									dst+=ctag+" "+elems[i+1].content+"\n";
+									tTitle=elems[i+1].content;
 									//search close p
 									for(;i<ei-1 && elems[i].type!=="paragraph_close";++i);
+									//
+									if(isTitle){
+										var nTitle=tTitle.replace(/[^a-zA-Z0-9\- ]/g,'').replace(/^ +/,'').replace(/ +$/,'').replace(/ +/g,'_');
+										$('#title').val('pugs/'+nTitle+'.pug');
+									}
 								}
 								else{
 									--i;
@@ -287,6 +298,7 @@ A. Uthors, B. Uthors and C. Uthors
 3. [link3](http://link.com/link3/)
 </textarea>
 <br />
+<input id="title" type="text" name="title" value="" style="width:100%; box-sizing:border-box" /><br />
 <textarea id="tdst">
 </textarea>
 </div>
