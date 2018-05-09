@@ -91,8 +91,9 @@ $(function(){
 		var dst="";
 		var blevel=0;
 		var level=0+blevel;
-		dst+=indent(level++)+"+slide"+"\n";
+		level=2;
 		var tdst="";
+		var nTitle="";
 		for(var i=0;i<elems.length;++i){
 			if(elems[i].tag==="h1" && elems[i].type==="heading_open"){
 				if(elems[i+1].content==="header"){
@@ -150,9 +151,8 @@ $(function(){
 									for(;i<ei-1 && elems[i].type!=="paragraph_close";++i);
 									//
 									if(isTitle){
-										var nTitle=tTitle.replace(/[^a-zA-Z0-9\- ]/g,'').replace(/^ +/,'').replace(/ +$/,'').replace(/ +/g,'_');
+										nTitle=tTitle.replace(/[^a-zA-Z0-9\- ]/g,'').replace(/^ +/,'').replace(/ +$/,'').replace(/ +/g,'_');
 										$('#title').val('  include pugs/'+nTitle+'.pug');
-										dst+=indent(level)+"section#"+nTitle+"\n";
 									}
 								}
 								else{
@@ -216,6 +216,13 @@ $(function(){
 		
 		dst+=indent(level)+".slide_index #{getSlideIndex()}"+"\n";
 		dst+=indent(level)+".timestamp "+year+"."+month+"."+day+" "+hour+":"+min+":"+sec+"\n";
+		
+		//前につける
+		dst = 
+			indent(0)+"+slide"+"\n"
+			+indent(0)+"section#"+nTitle+"\n"
+			+indent(1)+".paper-abstract"+"\n"
+			+dst;
 		
 		$('#tdst').val(dst);
 	});
