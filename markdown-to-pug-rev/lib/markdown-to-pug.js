@@ -124,6 +124,9 @@
 							      ret += ' ' + c.content;
 							    }
 							    break;
+							case 'hardbreak':
+								ret += this.indent(this.tag(c.tag, c.content, c.attrs), (e.level+level));
+								break;
 
 							  case 'code_inline':
 							    ret += this.indent(this.htmlTag(c.tag, c.content, c.attrs), (e.level+level));
@@ -263,6 +266,9 @@
 								{
 									ret += ' ' + c.content;
 								}
+								break;
+							case 'hardbreak':
+								ret += this.indent(this.tag(c.tag, c.content, c.attrs), (e.level+level));
 								break;
 
 							case 'code_inline':
