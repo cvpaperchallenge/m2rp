@@ -145,8 +145,20 @@ $(function(){
 								for(i+=3;i<ei-1 && !(elems[i].type==="paragraph_open" || elems[i].type==="heading_open") ;++i);
 								if(i<ei-1 && elems[i].type==="paragraph_open"){
 									//dst+=elems[i+1].content;
-									dst+=ctag+" "+elems[i+1].content+"\n";
-									tTitle=elems[i+1].content;
+									if(isTitle){
+										dst+=ctag+" "+elems[i+1].content+"\n";
+										tTitle=elems[i+1].content;
+									}
+									else{
+										var ipug=md2pug.renderRaw([elems[i+1]]);
+										var sipug=ipug.split(/\r\n|\r|\n/);
+										++level;
+										dst+=ctag+" "+sipug[0]+"\n"
+										for(var ti=1;ti<sipug.length;++ti){
+											dst+=indent(level)+sipug[ti]+"\n";
+										}
+										--level;
+									}
 									//search close p
 									for(;i<ei-1 && elems[i].type!=="paragraph_close";++i);
 									//
