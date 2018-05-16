@@ -153,7 +153,12 @@ $(function(){
 										var ipug=md2pug.renderRaw([elems[i+1]]);
 										var sipug=ipug.split(/\r\n|\r|\n/);
 										++level;
-										dst+=ctag+" "+sipug[0]+"\n"
+										if(elems[i+1].children[0].tag!=""){
+											dst+=ctag+": "+sipug[0]+"\n"
+										}
+										else{
+											dst+=ctag+" "+sipug[0]+"\n"
+										}
 										for(var ti=1;ti<sipug.length;++ti){
 											dst+=indent(level)+sipug[ti]+"\n";
 										}
