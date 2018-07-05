@@ -235,20 +235,11 @@ $(function(){
 		dst+=indent(level)+".timestamp "+year+"."+month+"."+day+" "+hour+":"+min+":"+sec+"\n";
 		
 		//前につける
-		if(nTitle.match(/^\d.*/)){
-			dst = 
-				indent(0)+"+slide"+"\n"
-				+indent(0)+"section#_"+nTitle+"\n"
-				+indent(1)+".paper-abstract"+"\n"
-				+dst;
-		}
-		else{
-			dst = 
-				indent(0)+"+slide"+"\n"
-				+indent(0)+"section#"+nTitle+"\n"
-				+indent(1)+".paper-abstract"+"\n"
-				+dst;
-		}
+		dst = 
+			indent(0)+"+slide"+"\n"
+			+indent(0)+"section#ID_"+nTitle+"\n"
+			+indent(1)+".paper-abstract"+"\n"
+			+dst;
 		
 		$('#tdst').val(dst);
 	});
